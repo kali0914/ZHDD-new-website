@@ -1,286 +1,248 @@
-   <!DOCTYPE html>
+html
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>网站已搬迁</title>
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0f1222;
+    --ink-soft: #5a6079;
+    --accent: #6c5ce7;
+    --accent-2: #00c9a7;
+    --bg: #f4f5fb;
   }
 
-  html, body {
-    height: 100%;
-  }
+  html, body { height: 100%; }
 
   body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: #fff;
-    padding: 20px;
-  }
-
-  .card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    padding: 48px 40px;
-    max-width: 440px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  }
-
-  .icon {
-    font-size: 56px;
-    margin-bottom: 20px;
-    animation: float 2s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-8px); }
-  }
-
-  h1 {
-    font-size: 26px;
-    font-weight: 600;
-    margin-bottom: 14px;
-  }
-
-  .desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 28px;
-  }
-
-  .url {
-    display: inline-block;
-    font-size: 17px;
-    font-weight: 600;
-    color: #ffd76a;
-    text-decoration: none;
-    padding: 10px 22px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-
-  .url:hover {
-    background: rgba(255, 255, 255, 0.22);
-    transform: translateY(-2px);
-  }
-
-  .countdown {
-    margin-top: 26px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .bar {
-    margin-top: 14px;
-    height: 4px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.2);
+    padding: 24px;
     overflow: hidden;
+    position: relative;
   }
 
-  .bar-fill {
-    height: 100%;
+  /* ---------- animated background ---------- */
+  .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: .55;
+    mix-blend-mode: multiply;
+    will-change: transform;
+  }
+  .blob.a {
+    width: 520px; height: 520px; left: -120px; top: -140px;
+    background: radial-gradient(circle, #b3a4ff, transparent 70%);
+    animation: drift1 18s ease-in-out infinite;
+  }
+  .blob.b {
+    width: 480px; height: 480px; right: -140px; top: 60px;
+    background: radial-gradient(circle, #9ff0e2, transparent 70%);
+    animation: drift2 22s ease-in-out infinite;
+  }
+  .blob.c {
+    width: 460px; height: 460px; left: 30%; bottom: -180px;
+    background: radial-gradient(circle, #ffd9a8, transparent 70%);
+    animation: drift3 26s ease-in-out infinite;
+  }
+  @keyframes drift1 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%     { transform: translate(90px,60px) scale(1.15); }
+  }
+  @keyframes drift2 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%     { transform: translate(-70px,80px) scale(1.1); }
+  }
+  @keyframes drift3 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%     { transform: translate(60px,-60px) scale(1.2); }
+  }
+
+  /* ---------- card ---------- */
+  .card {
+    position: relative;
+    z-index: 1;
     width: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #ffd76a, #ff9d5c);
-    transform-origin: left;
-    animation: shrink 2s linear forwards;
+    max-width: 460px;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 28px;
+    padding: 46px 40px 40px;
+    text-align: center;
+    box-shadow:
+      0 30px 70px -20px rgba(60, 64, 120, 0.35),
+      0 10px 30px -12px rgba(60, 64, 120, 0.18);
+    animation: rise .7s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px) scale(.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  @keyframes shrink {
-    from { transform: scaleX(1); }
-    to   { transform: scaleX(0); }
+  /* ---------- countdown ring ---------- */
+  .ring-wrap {
+    position: relative;
+    width: 132px; height: 132px;
+    margin: 0 auto 26px;
+  }
+  .ring { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring circle { fill: none; stroke-width: 8; }
+  .ring .track { stroke: rgba(108,92,231,0.14); }
+  .ring .fill {
+    stroke: url(#grad);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+  }
+  .ring-center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .num {
+    font-size: 42px; font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .num-label { margin-top: 6px; font-size: 12px; letter-spacing: 2px; color: var(--ink-soft); }
+
+  /* ---------- text ---------- */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12px; font-weight: 600; letter-spacing: .5px;
+    color: var(--accent);
+    background: rgba(108,92,231,0.1);
+    padding: 6px 14px; border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1);} 50% { opacity:.4; transform:scale(.7);} }
+
+  h1 { font-size: 28px; font-weight: 700; letter-spacing: -.5px; margin-bottom: 10px; }
+  .desc { font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 28px; }
+
+  /* ---------- url pill ---------- */
+  .url {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    font-size: 17px; font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 14px 22px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(60,64,120,0.1);
+    box-shadow: 0 6px 18px -8px rgba(60,64,120,0.3);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .url:hover {
+    transform: translateY(-3px);
+    border-color: rgba(108,92,231,0.4);
+    box-shadow: 0 14px 26px -10px rgba(108,92,231,0.4);
+  }
+  .url svg { width: 20px; height: 20px; flex: 0 0 auto; }
+
+  .note { margin-top: 18px; font-size: 13px; color: var(--ink-soft); }
+  .note b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 420px) {
+    .card { padding: 38px 26px 32px; border-radius: 24px; }
+    h1 { font-size: 24px; }
   }
 </style>
 </head>
 <body>
+  <div class="bg">
+    <div class="blob a"></div>
+    <div class="blob b"></div>
+    <div class="blob c"></div>
+  </div>
+
   <div class="card">
-    <div class="icon">🚚</div>
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#6c5ce7"/>
+            <stop offset="1" stop-color="#00c9a7"/>
+          </linearGradient>
+        </defs>
+        <circle class="track" cx="60" cy="60" r="52"/>
+        <circle class="fill" id="fill" cx="60" cy="60" r="52"/>
+      </svg>
+      <div class="ring-center">
+        <span class="num" id="num">10</span>
+        <span class="num-label">SECONDS</span>
+      </div>
+    </div>
+
+    <span class="eyebrow"><span class="dot"></span>NOTICE</span>
     <h1>网站已搬迁</h1>
-    <p class="desc">
-      我们已搬迁至新网址，正在为您跳转……
-    </p>
-    <a class="url" href="https://zhdd.party">https://zhdd.party</a>
-    <div class="countdown" id="countdown">2 秒后自动跳转</div>
-    <div class="bar"><div class="bar-fill"></div></div>
+    <p class="desc">我们已迁移至全新域名，页面即将自动跳转，您也可以手动点击下方链接。</p>
+
+    <a class="url" href="https://zhdd.party" id="goto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/>
+      </svg>
+      https://zhdd.party
+    </a>
+
+    <p class="note"><b id="note">10</b> 秒后自动跳转到新网址</p>
   </div>
 
   <script>
     (function () {
       var target = 'https://zhdd.party';
-      var seconds = 2;
-      var el = document.getElementById('countdown');
-      el.textContent = seconds + ' 秒后自动跳转';
+      var total = 10;
+      var remaining = total;
+
+      var numEl = document.getElementById('num');
+      var noteEl = document.getElementById('note');
+      var fillEl = document.getElementById('fill');
+
+      var R = 52;
+      var CIRC = 2 * Math.PI * R;
+      fillEl.style.strokeDasharray = CIRC;
+      fillEl.style.strokeDashoffset = 0;
+
+      function setRing(secondsLeft) {
+        var ratio = secondsLeft / total;          // 1 -> 0
+        fillEl.style.strokeDashoffset = CIRC * (1 - ratio);
+      }
+      setRing(total);
 
       var timer = setInterval(function () {
-        seconds--;
-        if (seconds > 0) {
-          el.textContent = seconds + ' 秒后自动跳转';
-        } else {
+        remaining--;
+        if (remaining <= 0) {
           clearInterval(timer);
+          numEl.textContent = '0';
+          setRing(0);
           window.location.replace(target);
+          return;
         }
+        numEl.textContent = remaining;
+        noteEl.textContent = remaining;
+        setRing(remaining);
       }, 1000);
-    })();
-  </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>网站已搬迁</title>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
 
-  html, body {
-    height: 100%;
-  }
-
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: #fff;
-    padding: 20px;
-  }
-
-  .card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    padding: 48px 40px;
-    max-width: 440px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  }
-
-  .icon {
-    font-size: 56px;
-    margin-bottom: 20px;
-    animation: float 2s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-8px); }
-  }
-
-  h1 {
-    font-size: 26px;
-    font-weight: 600;
-    margin-bottom: 14px;
-  }
-
-  .desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 28px;
-  }
-
-  .url {
-    display: inline-block;
-    font-size: 17px;
-    font-weight: 600;
-    color: #ffd76a;
-    text-decoration: none;
-    padding: 10px 22px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-
-  .url:hover {
-    background: rgba(255, 255, 255, 0.22);
-    transform: translateY(-2px);
-  }
-
-  .countdown {
-    margin-top: 26px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .bar {
-    margin-top: 14px;
-    height: 4px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.2);
-    overflow: hidden;
-  }
-
-  .bar-fill {
-    height: 100%;
-    width: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #ffd76a, #ff9d5c);
-    transform-origin: left;
-    animation: shrink 2s linear forwards;
-  }
-
-  @keyframes shrink {
-    from { transform: scaleX(1); }
-    to   { transform: scaleX(0); }
-  }
-</style>
-</head>
-<body>
-  <div class="card">
-    <div class="icon">🚚</div>
-    <h1>网站已搬迁</h1>
-    <p class="desc">
-      我们已搬迁至新网址，正在为您跳转……
-    </p>
-    <a class="url" href="https://zhdd.party">https://zhdd.party</a>
-    <div class="countdown" id="countdown">2 秒后自动跳转</div>
-    <div class="bar"><div class="bar-fill"></div></div>
-  </div>
-
-  <script>
-    (function () {
-      var target = 'https://zhdd.party';
-      var seconds = 2;
-      var el = document.getElementById('countdown');
-      el.textContent = seconds + ' 秒后自动跳转';
-
-      var timer = setInterval(function () {
-        seconds--;
-        if (seconds > 0) {
-          el.textContent = seconds + ' 秒后自动跳转';
-        } else {
-          clearInterval(timer);
-          window.location.replace(target);
-        }
-      }, 1000);
+      document.getElementById('goto').addEventListener('click', function () {
+        clearInterval(timer);
+        window.location.replace(target);
+      });
     })();
   </script>
 </body>
