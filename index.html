@@ -1,0 +1,287 @@
+   <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网站已搬迁</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #fff;
+    padding: 20px;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 48px 40px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    animation: float 2s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 28px;
+  }
+
+  .url {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffd76a;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .url:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
+  }
+
+  .countdown {
+    margin-top: 26px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .bar {
+    margin-top: 14px;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ffd76a, #ff9d5c);
+    transform-origin: left;
+    animation: shrink 2s linear forwards;
+  }
+
+  @keyframes shrink {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🚚</div>
+    <h1>网站已搬迁</h1>
+    <p class="desc">
+      我们已搬迁至新网址，正在为您跳转……
+    </p>
+    <a class="url" href="https://zhdd.party">https://zhdd.party</a>
+    <div class="countdown" id="countdown">2 秒后自动跳转</div>
+    <div class="bar"><div class="bar-fill"></div></div>
+  </div>
+
+  <script>
+    (function () {
+      var target = 'https://zhdd.party';
+      var seconds = 2;
+      var el = document.getElementById('countdown');
+      el.textContent = seconds + ' 秒后自动跳转';
+
+      var timer = setInterval(function () {
+        seconds--;
+        if (seconds > 0) {
+          el.textContent = seconds + ' 秒后自动跳转';
+        } else {
+          clearInterval(timer);
+          window.location.replace(target);
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网站已搬迁</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #fff;
+    padding: 20px;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 48px 40px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    animation: float 2s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 28px;
+  }
+
+  .url {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffd76a;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .url:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
+  }
+
+  .countdown {
+    margin-top: 26px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .bar {
+    margin-top: 14px;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ffd76a, #ff9d5c);
+    transform-origin: left;
+    animation: shrink 2s linear forwards;
+  }
+
+  @keyframes shrink {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🚚</div>
+    <h1>网站已搬迁</h1>
+    <p class="desc">
+      我们已搬迁至新网址，正在为您跳转……
+    </p>
+    <a class="url" href="https://zhdd.party">https://zhdd.party</a>
+    <div class="countdown" id="countdown">2 秒后自动跳转</div>
+    <div class="bar"><div class="bar-fill"></div></div>
+  </div>
+
+  <script>
+    (function () {
+      var target = 'https://zhdd.party';
+      var seconds = 2;
+      var el = document.getElementById('countdown');
+      el.textContent = seconds + ' 秒后自动跳转';
+
+      var timer = setInterval(function () {
+        seconds--;
+        if (seconds > 0) {
+          el.textContent = seconds + ' 秒后自动跳转';
+        } else {
+          clearInterval(timer);
+          window.location.replace(target);
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
